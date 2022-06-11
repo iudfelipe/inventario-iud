@@ -10,15 +10,15 @@ function App() {
     <div className="inventario-iud">
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/tipo-de-equipo/crear-o-editar/:id' element={<CreateOrEdit />}/>
-          <Route path='/tipo-de-equipo/crear-o-editar' element={<CreateOrEdit />}/>
-          <Route path="/tipo-de-equipo" element={<TipoEquipo />} />
-          <Route path='/estado-de-equipo/crear-o-editar' element={() => <p>Editando equipo</p>}/>
+          <Route path='/' element={<Home />} />
+          <Route path='/tipo-de-equipo/crear-o-editar/:id' element={<CreateOrEdit />} />
+          <Route path='/tipo-de-equipo/crear-o-editar' element={<CreateOrEdit />} />
+          <Route path='/tipo-de-equipo' element={<TipoEquipo />} />
+          <Route path='/estado-de-equipo/crear-o-editar' element={() => <p>Editando equipo</p>} />
           <Route path="/estado-de-equipo" element={() => <h2>Hello path</h2>} />
-          <Route path='/usuarios/crear-o-editar' element={() => <p>Editando equipo</p>}/>
+          <Route path='/usuarios/crear-o-editar' element={() => <p>Editando equipo</p>} />
           <Route path="/usuarios" element={() => <h2>Hello path</h2>} />
-          <Route path='/marcas/crear-o-editar' element={() => <p>Editando equipo</p>}/>
+          <Route path='/marcas/crear-o-editar' element={() => <p>Editando equipo</p>} />
           <Route path="/marcas" element={() => <h2>Hello path</h2>} />
           <Route path="/inventario" element={() => <h2>Hello path</h2>} />
         </Routes>

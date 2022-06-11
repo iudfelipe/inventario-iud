@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { createEquipo, updateEquipo } from '../../api/helper';
+import { getTipoById, createTipoEquipo, updateTipoEquipo } from '../../api/helper';
 
 function CreateOrEdit() {
   const { id } = useParams();
@@ -15,18 +15,10 @@ function CreateOrEdit() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = async (isEdition) => {
-    console.log(`[SUBMIT]
-    name: ${name},
-    status: ${status},
-    createdDate: ${createdDate},
-    updateDate: ${updateDate},
-    isEdition: ${isEdition}
-    `);
-
-    const apiCall = isEdition ? updateEquipo : createEquipo;
+    const apiCall = isEdition ? updateTipoEquipo : createTipoEquipo;
 
     const data = {
-      // add ID when isEdition
+      id,
       name,
       status: status === 'active',
       createdDate,
@@ -39,7 +31,6 @@ function CreateOrEdit() {
       setIsLoading(true);
       const { data: { message }} = await apiCall(data);
 
-      console.log('message: ', message);
       setSuccessMessage(message);
       
     } catch (e) {
@@ -50,6 +41,31 @@ function CreateOrEdit() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    (async function () {
+      if (isEdition && id) {
+        try {
+          setIsLoading(true);
+          const { data: { data } } = await getTipoById(id);
+          const { nombre, estado, fechaCreacion, fechaActualizacion } = data[0];
+
+          const _createdDate = fechaCreacion.split('T')[0];
+          const _updateDate = fechaActualizacion.split('T')[0];
+          
+          setName(nombre);
+          setStatus(estado ? 'active' : 'inactive');
+          setCreatedDate(_createdDate);
+          setUpdateDate(_updateDate);
+           
+        } catch (e) {
+          console.log('My error log', e);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    })()
+  }, []);
 
   return (
     <main>

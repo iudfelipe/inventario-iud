@@ -2,18 +2,21 @@ import axios from 'axios';
 
 const host = 'http://localhost:3001';
 
-// export const getTest = () => {
-//     axios.post(`${host}/equipo`).then(resp => {
+export const getTipos = () => {
+    return axios.get(`${host}/equipo/tipos`);
+};
 
-//         console.log('FE says: ', resp.data);
-//     })
-//     .catch((e) => console.log('Api helper error: ', e));
-// };
+export const getTipoById = (id) => {
+    return axios.get(`${host}/equipo/tipos/${id}`);
+};
 
-export const createEquipo = (data) => {
+export const createTipoEquipo = (data) => {
+    console.log('createTipoEquipo');
+    
     return axios.post(`${host}/equipo/tipo/create`, data);
 };
 
-export const updateEquipo = (data) => {
+export const updateTipoEquipo = (data) => {
+    console.log('updateTipoEquipo');
     return axios.post(`${host}/equipo/tipo/update`, data);
 };

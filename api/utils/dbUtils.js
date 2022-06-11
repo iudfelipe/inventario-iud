@@ -9,14 +9,18 @@ exports.init = () => {
     });
 
     async function query(sql) {
+        let conn;
+
         try {
-            let conn = await pool.getConnection();
+            conn = await pool.getConnection();
             let rows = await conn.query(sql);
 
             return rows;
         } catch (err) {
             console.log('query error: ', err);
             throw err;
+        } finally {
+            if (conn) conn.end();
         }
     }
 
