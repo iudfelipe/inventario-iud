@@ -1,4 +1,5 @@
-CREATE TABLE eqipos (
+
+CREATE TABLE equipos (
     id INT NOT NULL,
     nombre VARCHAR(255),
     estado BOOLEAN,
