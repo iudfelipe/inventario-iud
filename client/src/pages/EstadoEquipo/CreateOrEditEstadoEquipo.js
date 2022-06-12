@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTipoById, createTipoEquipo, updateTipoEquipo } from '../../api/helper';
+import { getEstadoById, createEstadoEquipo, updateEstadoEquipo } from '../../api/helper';
 
-function CreateOrEdit() {
+function CreateOrEstadoEquipo() {
   const { id } = useParams();
   const isEdition = !!id;
 
@@ -15,7 +15,7 @@ function CreateOrEdit() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = async (isEdition) => {
-    const apiCall = isEdition ? updateTipoEquipo : createTipoEquipo;
+    const apiCall = isEdition ? updateEstadoEquipo : createEstadoEquipo;
 
     const data = {
       id,
@@ -47,7 +47,7 @@ function CreateOrEdit() {
       if (isEdition && id) {
         try {
           setIsLoading(true);
-          const { data: { data } } = await getTipoById(id);
+          const { data: { data } } = await getEstadoById(id);
           const { nombre, estado, fechaCreacion, fechaActualizacion } = data[0];
 
           const _createdDate = fechaCreacion.split('T')[0];
@@ -69,7 +69,7 @@ function CreateOrEdit() {
 
   return (
     <main>
-      <h1 className="mb-5">{isEdition ? 'Editar' : 'Crear'} tipo de equipo</h1>
+      <h1 className="mb-5">{isEdition ? 'Editar' : 'Crear'} estado de equipo</h1>
       {isLoading && (
         <div class="spinner-border text-info">
       </div>
@@ -158,4 +158,4 @@ function CreateOrEdit() {
   )
 }
 
-export default CreateOrEdit;
+export default CreateOrEstadoEquipo;

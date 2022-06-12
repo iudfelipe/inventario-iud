@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTipos } from '../../api/helper';
+import { getEstados } from '../../api/helper';
 
-function TipoEquipo() {
-  const [tipos, setTipos] = useState([]);
-  
-  const setupTiposEquipo = async () => {
-    const { data: { data } } = await getTipos();
+function EstadoEquipo() {
+  const [estados, setEstados] = useState([]);
 
-    setTipos(data);
+  const setupEstadosEquipo = async () => {
+    const { data: { data } } = await getEstados();
+
+    setEstados(data);
   }
 
   useEffect(() => {
-    setupTiposEquipo();
+    setupEstadosEquipo();
   }, []);
 
   return (
     <main>
-      <h1 className="pt-2 pb-3">Tipo de Equipo</h1>
+      <h1 className="pt-2 pb-3">Estado de Equipo</h1>
       <div className="row">
         <div className="col">
           <Link to="crear-o-editar"><div className="btn btn-primary">Crear nuevo</div></Link>
@@ -35,8 +35,8 @@ function TipoEquipo() {
             </tr>
           </thead>
           <tbody>
-            {!tipos?.length && <p className="mt-2">No hay resultados para mostrar</p>}
-            {tipos.map((t) => (
+            {!estados?.length && <p className="mt-2">No hay resultados para mostrar</p>}
+            {estados.map((t) => (
               <tr key={t.id}>
                 <th scope="row">{t.id}</th>
                 <td>{t.nombre}</td>
@@ -57,4 +57,4 @@ function TipoEquipo() {
   )
 }
 
-export default TipoEquipo;
+export default EstadoEquipo;

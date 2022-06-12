@@ -47,10 +47,10 @@ CREATE TABLE marcas (
 
 CREATE TABLE inventario (
     serial INT NOT NULL,
-    modelo VARCHAR(255),
-    descripcion VARCHAR(255),
-    urlFoto VARCHAR(255),
-    color VARCHAR(255),
+    modelo VARCHAR(50),
+    descripcion VARCHAR(50),
+    urlFoto VARCHAR(50),
+    color VARCHAR(50),
     fechaCompra DATETIME,
     precio DECIMAL,
     idUsuarioACargo INT,

@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTipos } from '../../api/helper';
+import { getUsuarios } from '../../api/helper';
 
-function TipoEquipo() {
-  const [tipos, setTipos] = useState([]);
-  
-  const setupTiposEquipo = async () => {
-    const { data: { data } } = await getTipos();
+function Usuario() {
+  const [usuarios, setUsuarios] = useState([]);
 
-    setTipos(data);
+  const setupMarcas = async () => {
+    const { data: { data } } = await getUsuarios();
+
+    setUsuarios(data);
   }
 
   useEffect(() => {
-    setupTiposEquipo();
+    setupMarcas();
   }, []);
 
   return (
     <main>
-      <h1 className="pt-2 pb-3">Tipo de Equipo</h1>
+      <h1 className="pt-2 pb-3">Usuarios</h1>
       <div className="row">
         <div className="col">
           <Link to="crear-o-editar"><div className="btn btn-primary">Crear nuevo</div></Link>
@@ -29,17 +29,19 @@ function TipoEquipo() {
             <tr>
               <th scope="col">#ID</th>
               <th scope="col">Nombre</th>
+              <th scope="col">Email</th>
               <th scope="col">Estado</th>
               <th scope="col">Fecha de creación</th>
               <th scope="col">Fecha de actualización</th>
             </tr>
           </thead>
           <tbody>
-            {!tipos?.length && <p className="mt-2">No hay resultados para mostrar</p>}
-            {tipos.map((t) => (
+            {!usuarios?.length && <p className="mt-2">No hay resultados para mostrar</p>}
+            {usuarios.map((t) => (
               <tr key={t.id}>
                 <th scope="row">{t.id}</th>
                 <td>{t.nombre}</td>
+                <td>{t.email}</td>
                 <td>{t.estado ? 'activo' : 'inactivo'}</td>
                 <td>{new Date(t.fechaCreacion).toDateString()}</td>
                 <td>{new Date(t.fechaActualizacion).toDateString()}</td>
@@ -57,4 +59,4 @@ function TipoEquipo() {
   )
 }
 
-export default TipoEquipo;
+export default Usuario;
