@@ -91,8 +91,9 @@ export const getInventario = () => {
     return axios.get(`${host}/inventario`);
 };
 
-export const getInventarioById = (id) => {
-    return axios.get(`${host}/inventario`, { id });
+export const getInventarioById = (serial) => {
+    console.log('getInventarioByserial: ', serial);
+    return axios.get(`${host}/inventario`, { params: { serial } });
 };
 
 export const createInventario = (data) => {  

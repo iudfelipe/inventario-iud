@@ -44,6 +44,9 @@ function Inventario() {
         </div>
       </div>
       <div className="row">
+        <button type="button" class="btn btn-primary"><i class="bi bi-sort-down-alt"></i></button>
+      </div>
+      <div className="row">
         <table className="table">
           <thead>
             <tr>

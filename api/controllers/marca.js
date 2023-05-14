@@ -3,7 +3,7 @@ const { query } = db.init();
 
 module.exports = {
     getMarcas: async (req, res) => {
-        console.log('[GET] /marca/ req.querys: ', req.query);
+        console.log('[GET] /marca/ req.query: ', req.query);
         const { id } = req.query;
 
         let queryString = "SELECT * FROM marcas";
@@ -18,7 +18,7 @@ module.exports = {
         });
     },
     getMarcasActivas: async (req, res) => {
-        console.log('[GET] /marca/activo req.params: ', req.params);
+        console.log('[GET] /marca/activo');
 
         let queryString = "SELECT * FROM marcas WHERE estado = 1";
 

@@ -18,7 +18,7 @@ module.exports = {
         });
     },
     getTiposActivos: async (req, res) => {
-        console.log('[GET] /equipo/tipos/activo req.params: ', req.params);
+        console.log('[GET] /equipo/tipos/activo');
 
         let queryString = "SELECT * FROM tipos WHERE estado = 1";
 
