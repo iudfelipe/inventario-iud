@@ -1,6 +1,10 @@
+DROP DATABASE IF EXISTS `inventario-iud`;
+CREATE DATABASE `inventario-iud`;
+
+USE `inventario-iud`;
 
 CREATE TABLE equipos (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255),
     estado BOOLEAN,
     fechaCreacion DATETIME,
@@ -9,7 +13,7 @@ CREATE TABLE equipos (
 );
 
 CREATE TABLE estados (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255),
     estado BOOLEAN,
     fechaCreacion DATETIME,
@@ -18,7 +22,7 @@ CREATE TABLE estados (
 );
 
 CREATE TABLE tipos (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255),
     estado BOOLEAN,
     fechaCreacion DATETIME,
@@ -27,7 +31,7 @@ CREATE TABLE tipos (
 );
 
 CREATE TABLE usuarios (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255),
     email VARCHAR(255),
     estado BOOLEAN,
@@ -37,7 +41,7 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE marcas (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255),
     estado BOOLEAN,
     fechaCreacion DATETIME,
@@ -46,7 +50,7 @@ CREATE TABLE marcas (
 );
 
 CREATE TABLE inventario (
-    serial INT NOT NULL,
+    serial INT NOT NULL AUTO_INCREMENT,
     modelo VARCHAR(50),
     descripcion VARCHAR(50),
     urlFoto VARCHAR(50),
@@ -54,12 +58,12 @@ CREATE TABLE inventario (
     fechaCompra DATETIME,
     precio DECIMAL,
     idUsuarioACargo INT,
-    CONSTRAINT fk_idUsuarioACargo FOREIGN KEY idUsuarioACargo REFERENCES usuarios(id),
+    FOREIGN KEY (idUsuarioACargo) REFERENCES usuarios(id),
     idMarca INT,
-    CONSTRAINT fk_idMarca FOREIGN KEY idMarca REFERENCES marca(id),
+	FOREIGN KEY (idMarca) REFERENCES marcas(id),
     idEstado INT,
-    CONSTRAINT fk_idEstado FOREIGN KEY idEstado REFERENCES estado(id),
+    FOREIGN KEY (idEstado) REFERENCES estados(id),
     idIipo INT,
-    CONSTRAINT fk_idIipo FOREIGN KEY idIipo REFERENCES tipo(id),
+    FOREIGN KEY (idIipo) REFERENCES tipos(id),
     PRIMARY KEY (serial)
 );

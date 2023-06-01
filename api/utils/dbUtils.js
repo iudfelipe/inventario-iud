@@ -4,7 +4,7 @@ exports.init = () => {
     const pool = mariadb.createPool({
         host: 'localhost',
         user: 'root',
-        password: '', // TODO: should be 1234 and come from .env file
+        password: '1234',
         database: 'inventario-iud'
     });
 
